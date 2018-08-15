@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8"/>
+	<title>finanse</title>
+	<meta name="description" content="strona służąca porządkowaniu finansów osobistych" />
+	<meta name="keywords" content="bilans, finanse, wydatki" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="author" content="Tomasz Kazek" />
+	
+	<link rel="stylesheet" href="index.css" type="text/css"/>
+	
+</head>
+<body>
+	<script src="jquery-3.3.1.min.js"></script>
+	
+	<script>
+		
+		$(document).ready(function(){
+		var menuY = $('#menu').offset().top;
+		
+		var stickyMenu = function(){
+		var ScrollY = $(window).scrollTop();
+		
+		if (ScrollY>menuY){
+			$('#menu').addClass('sticky');
+			$('nav').addClass('stickyNav');
+		} else {
+			$('#menu').removeClass('sticky');
+			$('nav').removeClass('stickyNav');
+		}
+		};
+		
+		stickyMenu();
+		
+		$(window).scroll(function(){
+			stickyMenu();
+		});
+		});
+		
+	</script>
+	
+	<header>
+		<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+		<div id="menu">
+			<a href="zarejestruj-sie-i-zapanuj-nad-portfelem"><div class="start">rejestracja</div></a>
+			<a href="logowanie"><div class="start">logowanie</div></a>
+		</div>
+	</header>
+	<div clear:both></div>
+	<nav>
+		<ul>
+			<li><a href="dodaj-nowy-wydatek-lub-przychod">dodaj wydatek</a><br/></li>
+			<li><a href="dodaj-nowy-wydatek-lub-przychod">dodaj przychód</a><br/></li>
+			<li><a>bilans</a>
+				<ul>
+					<li><a href="bilans-wydatkow-i-przychodow-podsumowanie">bilans miesiąca</a><br/></li>
+					<li><a href="bilans-wydatkow-i-przychodow-podsumowanie">bilans zadanego okresu</a><br/></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<main>
+		Czy wiesz ile ekspresów do kawy mógłbyś kupić gdybyś nosił kawę w kubku termicznym zamiast korzystać z automatów?<br/>
+		Czy wiesz na ile wycieczek więcej mógłbyś pojechać nie wydając pieniędzy w pułapkach na turystów?<br/>
+		Jak często wypłata kończy się tydzień przed następną?<br/>
+		Zapisując swoje wydatki (i przychody) znacznie łatwiej kontrolować swoje finanse i wygenerować oszczędności zamiast się zadłużac.<br/>
+		Korzystając z tej strony będziesz mógł/mogła robić to z każdego miejsca o dowolnej porze.<br/>
+		Aby zacząć panować nad swoim portfelem zarejestruj się lub zaloguj jeśli masz już konto.
+	</main>
+	<footer>
+			<!--stopka-->
+	</footer>
+</body>
+</html>

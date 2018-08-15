@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8"/>
+	<title>finanse</title>
+	<meta name="description" content="strona służąca porządkowaniu finansów osobistych" />
+	<meta name="keywords" content="bilans, finanse, wydatki" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="author" content="Tomasz Kazek" />
+	
+	<link rel="stylesheet" href="bilans.css" type="text/css"/>
+	
+</head>
+<body>
+	<script src="jquery-3.3.1.min.js"></script>
+	
+	<script>
+		
+		$(document).ready(function(){
+		var menuY = $('#menu').offset().top;
+		
+		var stickyMenu = function(){
+		var ScrollY = $(window).scrollTop();
+		
+		if (ScrollY>menuY){
+			$('#menu').addClass('sticky');
+			$('nav').addClass('stickyNav');
+		} else {
+			$('#menu').removeClass('sticky');
+			$('nav').removeClass('stickyNav');
+		}
+		};
+		
+		stickyMenu();
+		
+		$(window).scroll(function(){
+			stickyMenu();
+		});
+		});
+		
+	</script>
+	
+	<header>
+		<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+		<div id="menu">
+			<a href="zarejestruj-sie-i-zapanuj-nad-portfelem"><div class="start">rejestracja</div></a>
+			<a href="logowanie"><div class="start">logowanie</div></a>
+		</div>
+	</header>
+	<div clear:both></div>
+	<nav>
+		<ul>
+			<li><a href="dodaj-nowy-wydatek-lub-przychod">dodaj wydatek</a><br/></li>
+			<li><a href="dodaj-nowy-wydatek-lub-przychod">dodaj przychód</a><br/></li>
+			<li><a>bilans</a>
+				<ul>
+					<li><a href="bilans-wydatkow-i-przychodow-podsumowanie">bilans miesiąca</a><br/></li>
+					<li><a href="bilans-wydatkow-i-przychodow-podsumowanie">bilans zadanego okresu</a><br/></li>
+				</ul>
+			<li><a>ustawienia</a></li>
+			<li><a href="finanse-osobiste-strona-glowna">wyloguj</a></li>
+		</ul>
+	</nav>
+	<main>
+		<div class="topBar">
+			<div class="lista">
+				<h2>Wydatki</h2>
+			</div>
+			<div class="lista">
+				<h2>Przychody</h2>
+			</div>
+		</div>
+		<div clear:both></div>
+		<section>
+			<div class="lista">
+				<div class="pozycje">
+					koks</br>
+					wóda</br>
+					fura</br>
+					suple</br>
+					złoty łańcuch</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+					batonik</br>
+				</div>
+				<div class="wartości">
+				30,00 PLN</br>
+				28,57 PLN</br>
+				400000,05 PLN</br>
+				150,56 PLN</br>
+				50000,00 PLN</br>
+				</div>
+			</div>	
+			<div clear:both></div>
+			<div class="lista">
+				<div class="pozycje">
+					haracze</br>
+					okupy</br>
+					sutenerstwo</br>
+				</div>
+				<div class="wartości">
+				3000,10 PLN</br>
+				50000,99 PLN</br>
+				40000,65 PLN</br>
+				</div>
+			</div>
+		</section>
+		<div clear:both></div>
+		<section>
+			<div class="lista">
+				<div class="pozycje">
+					Razem:</br>
+				</div>
+				<div class="wartości">
+				dużo PLN</br>
+				</div>
+			</div>
+			<div class="lista">
+				<div class="pozycje">
+					Razem:</br>
+				</div>
+				<div class="wartości">
+				mało PLN</br>
+				</div> 
+			</div>
+		</section>
+		<div clear:both></div>
+		<section >
+			<div class="lista">
+				<div class="pozycje">
+					Bilans:</br>
+				</div>
+				<div class="wartości">
+				jesteś w dupie</br>
+				</div>
+			</div>
+		</section>
+		<div clear:both></div>
+
+	</main>
+	<footer>
+			stopka
+	</footer>
+</body>
+</html>
