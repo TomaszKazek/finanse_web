@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette');
+
+body
+{
+	margin:0;
+	background: url("graphy.png");/* Background pattern from Toptal Subtle Patterns */
+	font-family: 'Courgette', cursive;
+}
+
+.option
+{
+	text-align:center;
+	padding:2px;
+}
+
+/*
+{
+	border-style:solid;
+	border-size:20px;
+	border-color:pink;
+}*/
+
+main
+{
+	margin-top:5%;
+}
+
+.dolar
+{
+	color: #ffd700;
+	font-size:70px;
+}
+
+section
+{
+	overflow:auto;
+	display: flex;
+	justify-content: center;
+}
+
+.topBar
+{
+	text-align: center;
+	margin-top:5%;
+}
+
+.sticky
+{
+	overflow:auto;
+	position:fixed;
+	top:0;
+	z-index: 1;
+	width: 100%;
+}
+
+.lista
+{
+	float:left;
+	display: flex;
+	justify-content: center;
+	width:40%;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+
+footer
+{
+	clear: both;
+	text-align:center;
+}
+
+#menu
+{
+	background-color:#00a0f0;
+}
+
+#menu a
+{
+	text-decoration:none;
+	color:white;
+}
+
+.option:hover
+{
+	background-color: #00b0f0;
+}
+
+.pozycje
+{
+	float:left;
+	text-align:left;
+	padding:10px;
+}
+
+.wartości
+{
+	float:left;
+	text-align:right;
+	padding: 10px;
+}
+	
+h1
+{
+	font-size: 100px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ul
+{
+	list-style-type:none;
+	display: none;
+}
+
+.option > ul
+{
+	white-space:nowrap;
+	display: none;
+	z-index:1;
+	color:black;
+}
+
+.option:hover > ul
+{
+	display: block;
+}
+
+.btn
+{
+	background:transparent !important;
+	border-style: none !important;
+	padding:0 !important;
+}
+
+.btn:focus
+{
+	box-shadow:none !important;
+}
+
+.dropdown-menu
+{
+	background-color: #00a0f0 !important;
+	border-radius:0 !important;
+}
+
+.dropdown-item:hover
+{
+	background-color:#00b0f0 !important;
+}
+/*forms below*/
+
+form
+{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:100px;
+	width: 30%;
+	padding: 50px;
+	box-shadow: 5px 5px 70px 5px rgba(25, 25, 25, 0.9);
+	background-color:white;
+}
+
+input[type=text],input[type=password],input[type=number], input[type=date], input[type=email]
+{
+	background-color: #efefef;
+	color: #777;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	width:100%;
+	padding: 7px;
+	box-sizing: border-box;
+	outline:none;
+	margin-top: 15px;
+	-moz-appearance:textfield;
+}
+
+input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, input[type=date]:focus, input[type=email]:focus
+{
+	box-shadow: 0 0 9px 2px rgba(0,160,240,0.5);
+	background-color: #f9ffff;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button, input[type=date]::-webkit-inner-spin-button, input[type=date]::-webkit-outer-spin-button
+{ 
+    -webkit-appearance: none;
+	margin:0;
+}
+
+input[type=submit]
+{
+	background-color: #00a0f0;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	width:100%;
+	padding: 7px;
+	margin-top: 25px;
+	font-size:inherit;
+	outline:none;
+}
+
+input[type=submit]:hover,input[type=submit]:focus
+{
+	background-color: #00b0f0;
+}
