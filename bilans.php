@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	
+	if(!isset($_SESSION['logged']))
+	{
+		header('Location: logowanie.php');
+		exit();
+	}
+?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -69,7 +79,7 @@
 			<a href="dodaj-nowy-wydatek-lub-przychod"><div class="option">dodaj przychód</div></a>
 		</div>
 		<div class="col-sm-6 col-md-3 col-lg-2">
-			<a href="finanse-osobiste-strona-glowna"><div class="option">wyloguj</div></a>
+			<a href="wyloguj.php"><div class="option">wyloguj</div></a>
 		</div>
 	</div>
 	

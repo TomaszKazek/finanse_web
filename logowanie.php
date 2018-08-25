@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	
+	if(isset($_SESSION['logged'])&&($_SESSION['logged']==true))
+	{
+		header('Location:bilans.php');
+		exit();
+	}
+?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -12,13 +22,20 @@
 	
 </head>
 <body>
-	
 	<main>
-		<form>
-
-			<input type="text" placeholder="login" onfocus="this.placeholder=''" onblur="this.placeholder='login'">
+	
+		<form action="zaloguj.php" method="post">
 			
-			<input type="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'">
+			<?php
+				if(isset($_SESSION['error']))
+				{
+					echo $_SESSION['error'];
+				}
+			?>	
+
+			<input type="text" name="login" placeholder="login" onfocus="this.placeholder=''" onblur="this.placeholder='login'">
+			
+			<input type="password" name="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'">
 			
 			<input type="submit" value="Zaloguj">
 		

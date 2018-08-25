@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	
+	if(!isset($_SESSION['logged']))
+	{
+		header('Location: logowanie.php');
+		exit();
+	}
+?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>

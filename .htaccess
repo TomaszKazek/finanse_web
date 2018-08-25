@@ -5,8 +5,8 @@ Deny from all
 </FilesMatch>
 
 RewriteEngine on
-RewriteRule finanse-osobiste-strona-glowna index.html
-RewriteRule bilans-wydatkow-i-przychodow-podsumowanie bilans.html
-RewriteRule logowanie logowanie.html
-RewriteRule zarejestruj-sie-i-zapanuj-nad-portfelem rejestracja.html
-RewriteRule dodaj-nowy-wydatek-lub-przychod dodaj.html
+RewriteRule finanse-osobiste-strona-glowna index.php
+RewriteRule bilans-wydatkow-i-przychodow-podsumowanie bilans.php
+RewriteRule logowanie logowanie.php
+RewriteRule zarejestruj-sie-i-zapanuj-nad-portfelem rejestracja.php
+RewriteRule dodaj-nowy-wydatek-lub-przychod dodaj.php

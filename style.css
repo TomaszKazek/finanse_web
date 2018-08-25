@@ -206,3 +206,9 @@ input[type=submit]:hover,input[type=submit]:focus
 {
 	background-color: #00b0f0;
 }
+
+.warning
+{
+	color: #ff0000;
+	font-family: Arial;
+}
