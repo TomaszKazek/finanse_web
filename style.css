@@ -211,4 +211,10 @@ input[type=submit]:hover,input[type=submit]:focus
 {
 	color: #ff0000;
 	font-family: Arial;
+	margin-top:10px;
+}
+
+.g-recaptcha
+{
+	margin-top:20px;
 }

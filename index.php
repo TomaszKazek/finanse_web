@@ -1,6 +1,17 @@
 <?php
 	session_start();
 	
+	if(isset($_SESSION['keep_login'])) unset($_SESSION['keep_login']);
+	if(isset($_SESSION['keep_email'])) unset($_SESSION['keep_email']);
+	if(isset($_SESSION['keep_password1'])) unset($_SESSION['keep_password1']);
+	if(isset($_SESSION['keep_password2'])) unset($_SESSION['keep_password2']);
+	
+	if(isset($_SESSION['err_login'])) unset($_SESSION['err_login']);
+	if(isset($_SESSION['err_email'])) unset($_SESSION['err_email']);
+	if(isset($_SESSION['err_password'])) unset($_SESSION['err_password']);
+	if(isset($_SESSION['err_different'])) unset($_SESSION['err_different']);
+	if(isset($_SESSION['err_captcha'])) unset($_SESSION['err_captcha']);
+	
 	if(isset($_SESSION['logged'])&&($_SESSION['logged']==true))
 	{
 		header('Location:bilans.php');
