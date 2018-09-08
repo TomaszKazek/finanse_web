@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Sie 2018, 18:46
+-- Czas generowania: 08 Wrz 2018, 12:07
 -- Wersja serwera: 10.1.34-MariaDB
 -- Wersja PHP: 7.2.7
 
@@ -29,9 +29,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `default_expenses_categories` (
-  `expense_category_id` int(11) NOT NULL,
-  `expense_category` varchar(50) COLLATE utf8_polish_ci NOT NULL
+  `expense_category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `default_expenses_categories`
+--
+
+INSERT INTO `default_expenses_categories` (`expense_category_id`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6);
 
 -- --------------------------------------------------------
 
@@ -40,9 +51,17 @@ CREATE TABLE `default_expenses_categories` (
 --
 
 CREATE TABLE `default_incomes_categories` (
-  `income_category_id` int(11) NOT NULL,
-  `income_category` varchar(50) COLLATE utf8_polish_ci NOT NULL
+  `income_category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `default_incomes_categories`
+--
+
+INSERT INTO `default_incomes_categories` (`income_category_id`) VALUES
+(1),
+(2),
+(3);
 
 -- --------------------------------------------------------
 
@@ -70,6 +89,18 @@ CREATE TABLE `expenses_categories` (
   `expense_category` varchar(50) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `expenses_categories`
+--
+
+INSERT INTO `expenses_categories` (`expense_category_id`, `expense_category`) VALUES
+(2, 'abonamenty'),
+(3, 'czynsz i media'),
+(4, 'odzież i obuwie'),
+(5, 'paliwo'),
+(6, 'środki czystości'),
+(1, 'żywność');
+
 -- --------------------------------------------------------
 
 --
@@ -95,6 +126,15 @@ CREATE TABLE `incomes_categories` (
   `income_category_id` int(11) NOT NULL,
   `income_category` varchar(50) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `incomes_categories`
+--
+
+INSERT INTO `incomes_categories` (`income_category_id`, `income_category`) VALUES
+(2, 'odsetki od lokaty'),
+(3, 'pensja'),
+(1, 'prezent');
 
 -- --------------------------------------------------------
 
@@ -139,15 +179,13 @@ CREATE TABLE `users_incomes_categories` (
 -- Indeksy dla tabeli `default_expenses_categories`
 --
 ALTER TABLE `default_expenses_categories`
-  ADD PRIMARY KEY (`expense_category_id`),
-  ADD UNIQUE KEY `expense_category` (`expense_category`);
+  ADD PRIMARY KEY (`expense_category_id`);
 
 --
 -- Indeksy dla tabeli `default_incomes_categories`
 --
 ALTER TABLE `default_incomes_categories`
-  ADD PRIMARY KEY (`income_category_id`),
-  ADD UNIQUE KEY `income_category` (`income_category`);
+  ADD PRIMARY KEY (`income_category_id`);
 
 --
 -- Indeksy dla tabeli `expenses`
@@ -209,13 +247,13 @@ ALTER TABLE `users_incomes_categories`
 -- AUTO_INCREMENT dla tabeli `default_expenses_categories`
 --
 ALTER TABLE `default_expenses_categories`
-  MODIFY `expense_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `expense_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT dla tabeli `default_incomes_categories`
 --
 ALTER TABLE `default_incomes_categories`
-  MODIFY `income_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `income_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `expenses`
@@ -227,7 +265,7 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT dla tabeli `expenses_categories`
 --
 ALTER TABLE `expenses_categories`
-  MODIFY `expense_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `expense_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT dla tabeli `incomes`
@@ -239,7 +277,7 @@ ALTER TABLE `incomes`
 -- AUTO_INCREMENT dla tabeli `incomes_categories`
 --
 ALTER TABLE `incomes_categories`
-  MODIFY `income_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `income_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`

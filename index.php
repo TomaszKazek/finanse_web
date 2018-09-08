@@ -12,6 +12,7 @@
 	if(isset($_SESSION['err_different'])) unset($_SESSION['err_different']);
 	if(isset($_SESSION['err_captcha'])) unset($_SESSION['err_captcha']);
 	
+	//redirect to bilana if logged
 	if(isset($_SESSION['logged'])&&($_SESSION['logged']==true))
 	{
 		header('Location:bilans.php');
@@ -30,18 +31,24 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="author" content="Tomasz Kazek" />
 	
+	<!--bootstrap-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<!--css-->
 	<link rel="stylesheet" href="style.css" type="text/css"/>
 	
 </head>
 <body>
 	<div class="container-fluid">
-	<header class="row">
-		<div class="col-sm-12">
-			<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+	<header class="row justify-content-center">
+		<div class="col-sm-4 col-md-3 col-lg-2">
+			<h1>Finan<span class="dolar">$€</span> </h1>
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2">
+			<h1> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
 		</div>
 	</header>
-	<div class="row justify-content-end" id="menu">
+	<div class="row justify-content-center" id="menu">
 		<div class="col-sm-2 col-lg-1">
 			<a href="zarejestruj-sie-i-zapanuj-nad-portfelem"><div class="option">rejestracja</div></a>
 		</div>
@@ -61,9 +68,10 @@
 	</main>
 	</div>
 	<footer>
-			<!--stopka-->
+			Autor: Tomasz Kazek | strona wykonana na potrzeby projektu <a href="http://www.przyszlyprogramista.pl" target="_blank">przyszłyprogramista.pl</a> | kontakt: tomasz.kazek.89@gmail.com
 	</footer>
 	
+	<!--bootstrap-->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
