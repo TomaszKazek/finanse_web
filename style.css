@@ -5,6 +5,12 @@ body
 	margin:0;
 	background: url("graphy.png");/* Background pattern from Toptal Subtle Patterns */
 	font-family: 'Courgette', cursive;
+	/*padding-top:70px;*/
+}
+
+.pinkborder
+{
+	border: 3px solid pink;
 }
 
 .option
@@ -19,13 +25,6 @@ footer
 	margin-bottom: 50px;
 }
 
-#kupa
-{
-	border-style:solid;
-	border-size:20px;
-	border-color:pink;
-}
-
 main
 {
 	margin-top:5%;
@@ -35,6 +34,23 @@ main
 {
 	color: #ffd700;
 	font-size:33px;
+}
+
+.logo
+{
+	text-decoration:none;
+	color: inherit;
+}
+
+.logo:hover
+{
+	text-decoration:none;
+	color: inherit;
+}
+
+.gold
+{
+	color: #ffd700;
 }
 
 section
@@ -57,6 +73,11 @@ section
 	top:0;
 	z-index: 1;
 	width: 100%;
+}
+
+.topOverride[style]
+{
+	position: sticky !important;
 }
 
 .lista
@@ -168,6 +189,48 @@ form
 	padding: 50px;
 	box-shadow: 5px 5px 70px 5px rgba(25, 25, 25, 0.9);
 	background-color:white;
+}
+
+.delete
+{
+	margin:0 !important;
+	padding:0 !important;
+	box-shadow:none;
+	background-color:transparent;
+}
+
+.delete-button
+{
+	background-color:#ff0000 !important;
+	font-family:arial;
+	padding-left:3px !important;
+	padding-right:3px !important;
+}
+
+.delete-button:hover
+{
+	background-color:#ff5555 !important;
+	font-family:arial;
+}
+
+.x
+{
+	font-family:arial;
+	background-color:#ff0000;
+	text-decoration:none;
+	color:white;
+	border-radius: 5px;
+	padding-left:5px;
+	padding-right:5px;
+	float:right;
+}
+
+.x:hover
+{
+	font-family:arial;
+	background-color:#ff5555;
+	text-decoration:none;
+	color:white;
 }
 
 input[type=text],input[type=password],input[type=number], input[type=date], input[type=email], select
