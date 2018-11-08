@@ -1,89 +1,3 @@
-<?php
-	session_start();
-	
-	//if user is logged in go to bilans.php
-	if(isset($_SESSION['logged'])&&($_SESSION['logged']==true))
-	{
-		header('Location:bilans.php');
-		exit();
-	}
-	
-	//do only if form was already submitted ($_POST set)
-	if(isset($_POST['login']))
-	{	
-		//bd credentials
-		require_once "kontakt_z_baza.php";
-		
-		//mysqli_report(MYSQLI_REPORT_STRICT);
-		
-		try
-		{
-			//variables defined in kontakt_baza.php
-			//@ to not show worning when host not found
-			$connection = @new mysqli($host,$db_user,$db_password,$db_name);
-			
-			//if connection set up successfully ->else if not throw exception
-			if($connection->connect_errno!=0)
-			{
-				throw new Exception(mysqli_connect_errno());
-			}
-			else
-			{
-				//get variables from form
-				$login = $_POST['login'];
-				$password = $_POST['password'];
-				
-				//convert signs allowing sql injection
-				$login=htmlentities($login,ENT_QUOTES,"UTF-8");
-				
-				//do if connection works (failed connection give 0)
-				if($result = $connection->query(
-				//%s will be replaced by mysqli_real_escape_strings
-				sprintf("SELECT * FROM users WHERE login='%s'",
-				//prevents query errors (e.g. removes ' )
-				mysqli_real_escape_string($connection,$login))))
-				{
-					$users=$result->num_rows;
-					if($users==1)
-					{
-							//create tab with index from tab from database
-							$row = $result->fetch_assoc();
-							//compares hashed passwords
-							if(password_verify($password,$row['password']))
-							{
-							$_SESSION['logged']=true;
-							$_SESSION['user']=$row['user_id'];
-							
-							$connection->close();
-							unset($_SESSION['error']);
-							unset($_SESSION['err_pass']);
-							header('Location: bilans.php');
-							}
-						else
-						{
-						$_SESSION['err_pass']='<span class="warning">Nieprawidłowe hasło!</span>';
-						}
-					}
-					else
-					{
-						$_SESSION['error']='<span class="warning">Niepoprawny login!</span>';
-					}
-				}
-				else
-				{
-						throw new Exception($connection->error);
-				}
-				
-				$connection->close();
-			}
-		}
-		catch(Exception $error)
-		{
-			$_SESSION['error']='<span class="warning">Błąd serwera!</span>';
-		}
-	}
-?>
-
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -106,25 +20,42 @@
 		<div class="container-fluid">
 			<header class="row">
 				<div class="col-sm-12">
-					<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					<a class="logo" href="finanse-osobiste">
+						<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					</a>
 				</div>
 			</header>
 			<div class="row col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 justify-content-center">
-				<form method="post">
+				<form action="finanse-osobiste?action=login" method="post">
+				
+					<a class="x" href="finanse-osobiste">X</a>
 					
 					<?php			
-						if(isset($_SESSION['error']))
+						if(isset($_SESSION['err_log']))
 						{
-							echo $_SESSION['error'];
+							echo $_SESSION['err_log'];
+							//clear previous value
+							unset($_SESSION['err_log']);
 						}
 					?>	
 
-					<input type="text" name="login" placeholder="login" onfocus="this.placeholder=''" onblur="this.placeholder='login'">
+					<input type="text" name="login" placeholder="login" value=
+						"<?php
+							if(isset($_SESSION['keep_login']))
+							{
+								echo $_SESSION['keep_login'];
+								//clear previous value
+								unset($_SESSION['keep_login']);
+							}
+						?>"
+					onfocus="this.placeholder=''" onblur="this.placeholder='login'">
 					
 					<?php			
 						if(isset($_SESSION['err_pass']))
 						{
 							echo $_SESSION['err_pass'];
+							//clear previous value
+							unset($_SESSION['err_pass']);
 						}
 					?>	
 					

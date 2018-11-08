@@ -1,73 +1,3 @@
-<?php
-	session_start();
-	
-	//bd credentials
-	require_once"kontakt_z_baza.php";
-	
-	//redirect to logging if not logged
-	if(!isset($_SESSION['logged']))
-	{
-		header('Location: logowanie.php');
-		exit();
-	}
-	
-	//do if form was submitted
-	if(isset($_POST['value']))
-	{
-		$_POST['comment']=htmlentities($_POST['comment'],ENT_QUOTES,"UTF-8");
-		try
-		{
-			//variables defined in kontakt_baza.php
-			//@ to not show worning when host not found
-			$connection = new mysqli($host,$db_user,$db_password,$db_name);
-			//polish signs
-			$connection -> query ('SET NAMES utf8');
-			//if connection set up successfully ->else if not throw exception
-			if($connection->connect_errno!=0)
-			{
-				throw new Exception(mysqli_connect_errno());
-			}
-			else
-			{	
-				//change category name to number from expenses_categories
-				$result = $connection->query("SELECT * FROM expenses_categories");
-				$names=$result->fetch_all();
-				$i=0;
-				while(1)
-				{
-					if($names[$i][1]==$_POST['category'])
-					{
-						$category=$names[$i][0];
-						break;
-					}
-					else
-					{
-						$i++;
-					}
-				}
-				
-				if($connection->query("INSERT INTO expenses VALUES (NULL,{$_SESSION['user']},{$category},'{$_POST['date']}',{$_POST['value']},'{$_POST['comment']}')"))
-				{
-					header('Location: bilans.php');
-				}
-				else
-				{
-					throw new Exception($connection->error);
-				}
-				unset($_POST['value']);
-				unset($_POST['category']);
-				unset($_POST['date']);
-				unset($_POST['comment']);
-			}
-		}
-	
-		catch(Exception $error)
-			{
-				$_SESSION['err']="Błąd serwera";
-			}
-	}
-?>
-
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -92,11 +22,15 @@
 		<div class="container-fluid">
 			<header class="row">
 				<div class="col-sm-12">
-					<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					<a class="logo" href="finanse-osobiste">
+						<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					</a>
 				</div>
 			</header>
 			<div class="row col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 justify-content-center">
-				<form method="post">
+				<form action="finanse-osobiste?action=addExpense" method="post">
+				
+					<a class="x" href="finanse-osobiste">X</a>
 				
 					<?php
 						if(isset($_SESSION['err']))
@@ -112,6 +46,8 @@
 					<select name="category" required>
 						<option disabled selected value="">kategoria</option>
 						<?php
+							//bd credentials
+							require_once"kontakt_z_baza.php";
 							//set connection
 							$connection = @new mysqli($host,$db_user,$db_password,$db_name);
 							//take categories for user

@@ -1,104 +1,3 @@
-<?php
-	session_start();
-	
-	//bd credentials
-	require_once"kontakt_z_baza.php";
-	
-	//redirect to logging if not logged
-	if(!isset($_SESSION['logged']))
-	{
-		header('Location: logowanie.php');
-		exit();
-	}
-	
-	//do if form was submitted
-	if(isset($_POST['category']))
-	{
-		//convert signs allowing sql injection
-		$_POST['category']=htmlentities($_POST['category'],ENT_QUOTES,"UTF-8");
-		
-		try
-		{
-			//variables defined in kontakt_baza.php
-			//@ to not show worning when host not found
-			$connection = new mysqli($host,$db_user,$db_password,$db_name);
-			//polish signs
-			$connection -> query ('SET NAMES utf8');
-			//if connection set up successfully ->else if not throw exception
-			if($connection->connect_errno!=0)
-			{
-				throw new Exception(mysqli_connect_errno());
-			}
-			else
-			{
-				$categoryExists=false;
-				$categoryAssignedToUser=false;
-				$result=$connection->query("SELECT * FROM expenses_categories WHERE expense_category='{$_POST['category']}'");
-				
-				if(!$result) throw new Exception($connection->error);
-				
-				$categories=$result->num_rows;
-				
-				//if enetered category exist in expenses_categories...
-				if($categories==1)
-				{
-					//...mark it in $categoryExists...
-					$categoryExists=true;
-					$categoryID=$result->fetch_all();
-					//...take its id...
-					$categoryID=$categoryID[0][0];
-					//check if attached to logged user
-					$result=$connection->query("SELECT * FROM users_expenses_categories WHERE user_id={$_SESSION['user']}");
-					if(!$result) throw new Exception($connection->error);
-					$categories=$result->num_rows;
-					//if so mark it
-					if($categories==1)
-					{
-						$categoryAssignedToUser=true;
-						$_SESSION['err']="Podana kategoria już istnieje!";
-					}
-				}
-				
-				//if category doesn't exist - add it
-				if($categoryExists==false)
-				{
-					if($connection->query("INSERT INTO expenses_categories VALUES (NULL,'{$_POST['category']}')"))
-					{	
-						//take number just added category
-						$result=$connection->query("SELECT * FROM expenses_categories WHERE expense_category='{$_POST['category']}'");
-						$categoryID=$result->fetch_all();
-						$categoryID=$categoryID[0][0];
-					}
-					else
-					{
-						throw new Exception($connection->error);
-					}
-				}
-				
-				if($categoryAssignedToUser==false)
-				{
-					//assign category to user and go to bilans
-					if($connection->query("INSERT INTO users_expenses_categories VALUES ({$_SESSION['user']},$categoryID)"))
-					{
-						header('Location: bilans.php');
-					}
-					else
-					{
-						throw new Exception($connection->error);
-					}
-				}
-				
-				unset($_POST['category']);
-			}
-		}
-	
-		catch(Exception $error)
-			{
-				$_SESSION['err']="Błąd serwera!";
-			}
-	}
-?>
-
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -123,11 +22,15 @@
 		<div class="container-fluid">
 			<header class="row">
 				<div class="col-sm-12">
-					<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					<a class="logo" href="finanse-osobiste">
+						<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					</a>
 				</div>
 			</header>
 			<div class="row col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 justify-content-center">
-				<form method="post">
+				<form action="index.php?action=addExpenseCategory" method="post">
+				
+					<a class="x" href="finanse-osobiste">X</a>
 				
 					<?php
 						if(isset($_SESSION['err']))
@@ -135,14 +38,6 @@
 							echo '<div class="warning">'.$_SESSION['err'].'</div>';
 							//clear error after display
 							unset($_SESSION['err']);
-						}
-					?>
-					<?php
-						if(isset($_SESSION['err2']))
-						{
-							echo '<div class="warning">'.$_SESSION['err2'].'</div>';
-							//clear error after display
-							unset($_SESSION['err2']);
 						}
 					?>
 

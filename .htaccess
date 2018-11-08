@@ -5,12 +5,4 @@ Deny from all
 </FilesMatch>
 
 RewriteEngine on
-RewriteRule finanse-osobiste-strona-glowna index.php
-RewriteRule bilans-wydatkow-i-przychodow-podsumowanie bilans.php
-RewriteRule logowanie logowanie.php
-RewriteRule zarejestruj-sie-i-zapanuj-nad-portfelem rejestracja.php
-RewriteRule dodaj-nowy-wydatek 'dodaj wydatek.php'
-RewriteRule dodaj-nowy-przychod 'dodaj przychod.php'
-RewriteRule wybierz-okres 'daty bilansu.php'
-RewriteRule dodaj-kategorie-wydatku 'dodaj kategorie wydatku.php'
-RewriteRule dodaj-kategorie-przychodu 'dodaj kategorie przychodu.php'
+RewriteRule finanse-osobiste index.php

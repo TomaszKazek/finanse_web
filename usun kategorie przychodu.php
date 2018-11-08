@@ -28,7 +28,7 @@
 				</div>
 			</header>
 			<div class="row col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 justify-content-center">
-				<form action="finanse-osobiste?action=addIncomeCategory" method="post">
+				<form action="index.php?action=deleteIncomeCategory" method="post">
 				
 					<a class="x" href="finanse-osobiste">X</a>
 				
@@ -40,10 +40,46 @@
 							unset($_SESSION['err']);
 						}
 					?>
-
-					<input type="text" name="category" placeholder="kategoria" onfocus="this.placeholder=''" onblur="this.placeholder='kategoria'">
 					
-					<input type="submit" value="Dodaj">
+					<select name="category" required>
+						<option disabled selected value="">kategoria</option>
+						<?php
+							//bd credentials
+							require_once"kontakt_z_baza.php";
+							//set connection
+							$connection = @new mysqli($host,$db_user,$db_password,$db_name);
+							//take categories for user
+							$result = $connection->query("SELECT income_category_id FROM users_incomes_categories WHERE user_id = {$_SESSION['user']}");
+							$rows=$result->fetch_all();
+							//for polish signs
+							$connection -> query ('SET NAMES utf8');
+							//$connection -> query ('SET CHARACTER_SET utf8_polish_ci');
+							//load categories names
+							$result = $connection->query("SELECT * FROM incomes_categories");
+							$names=$result->fetch_all();
+							//for every category number found for user look for its name in $names
+							foreach($rows as $row)
+								{
+									echo'<option>';
+									$i=0;
+									while(1)
+									{
+										if($names[$i][0]==$row[0])
+										{
+											echo $names[$i][1];
+											break;
+										}
+										else
+										{
+											$i++;
+										}
+									}
+									echo'</option>';
+								}
+						?>
+					</select>
+					
+					<input type="submit" value="Usuń">
 				
 				</form>
 			</div>

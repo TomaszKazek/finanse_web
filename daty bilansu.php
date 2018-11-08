@@ -1,13 +1,3 @@
-<?php
-	session_start();
-	
-	//redirect to logging if not logged
-	if(!isset($_SESSION['logged']))
-	{
-		header('Location: logowanie.php');
-		exit();
-	}
-?>
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -32,11 +22,15 @@
 		<div class="container-fluid">
 			<header class="row">
 				<div class="col-sm-12">
-					<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					<a class="logo" href="finanse-osobiste">
+						<h1>Finan<span class="dolar">$€</span> o<span class="dolar">$</span>obi<span class="dolar">$</span>t<span class="dolar">€</span></h1>
+					</a>
 				</div>
 			</header>
 			<div class="row col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 justify-content-center">
-				<form method="post" action="bilans.php">
+				<form method="post" action="finanse-osobiste">
+				
+					<a class="x" href="finanse-osobiste">X</a>
 					
 					<input type="text" name="begDate" placeholder="początek okresu" onfocus="(this.type='date')" onblur="(this.type='text')" required>
 
